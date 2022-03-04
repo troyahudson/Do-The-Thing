@@ -1,5 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500;600;700&family=Poppins:wght@100;200;400;500;600;700&family=Roboto:wght@100;400;700&display=swap');
+
+:root {
+  --green: hsl(137, 65%, 51%);
+  --green-light: hsl(137, 55%, 66%);
+  --green-lighter: hsl(137, 45%, 75%);
+  --green-dark: hsl(137, 71%, 41%);
+  --green-darker: hsl(137, 72%, 35%);
+  --blue: hsl(170, 65%, 51%);
+  --blue-light: hsl(170, 55%, 66%);
+  --blue-lighter: hsl(170, 45%, 75%);
+  --blue-dark: hsl(170, 71%, 41%);
+  --blue-darker: hsl(170, 72%, 35%);
+}
+
 .App {
+  font-family: 'Poppins', sans-serif;
   text-align: center;
+  margin: 0;
+}
+
+.App button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.App button:hover {
+  filter: contrast(110%);
+
+}
+
+.App input{
+  outline-color: var(--green);
+  font-size: 1rem;
+  padding: 0.2rem;
 }
 
 .App-logo {
@@ -13,7 +46,7 @@
   }
 }
 
-.App-header {
+/* .App-header {
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
@@ -22,11 +55,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
+} */
 
 @keyframes App-logo-spin {
   from {

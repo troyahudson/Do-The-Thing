@@ -1,0 +1,24 @@
+.user-page-root h2 {
+    margin: 0;
+}
+
+.user-page-root button {
+    background-color: var(--green-lighter);
+    font-weight: 500;
+    font-size: 0.9em;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.25rem;
+    margin: 1rem;
+}
+
+.user-page-root .project-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    justify-items: center;
+    margin: 1rem auto;
+}
+

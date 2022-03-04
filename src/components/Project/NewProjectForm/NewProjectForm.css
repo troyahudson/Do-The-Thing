@@ -1,0 +1,65 @@
+.project-form-root {
+    background-color: rgba(0, 0, 0, 0.473);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* display: flex; */
+    z-index: 1;
+}
+
+.project-form-root .form-container {
+    background-color: #eee;
+    width: 75vw;
+    max-width: 650px;
+    margin: auto;
+    /* padding: 1rem; */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 6px;
+    box-shadow: 1px 1px 8px -2px;
+}
+
+.project-form-root .form-container .header {
+    background-color: var(--green-light);
+    margin: auto;
+    /* width: 100%; */
+    border-radius: 6px 6px 0 0;
+    padding: 0.2rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.project-form-root .form-container .rightButton {
+    background-color: lightgray;
+}
+
+.project-form-root .form-container form {
+    display: flex;
+    flex-direction: column;
+    margin: 0.5rem 1.5rem;
+}
+
+.project-form-root input {
+    border: none;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    outline-color: var(--green);
+}
+
+.project-form-root textarea {
+    resize: none;
+    font-family: inherit;
+    font-size: 1rem;
+    height: 6.4rem;
+    padding: 0.4rem;
+    border: none;
+    outline-color: var(--green);
+}
+
+.project-form-root .cancelButton {
+    background-color: lightgray;
+}

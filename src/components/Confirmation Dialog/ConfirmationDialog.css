@@ -1,0 +1,46 @@
+.confirmation-root {
+    background-color: rgba(0, 0, 0, 0.473);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    /* display: flex; */
+    z-index: 1;
+}
+
+.confirmation-root .dialog-root {
+    background-color: #eee;
+    width: 40vw;
+    min-width: 350px;
+    margin: auto;
+    padding: 1.5rem 0.3rem;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 8px -2px;
+    border-radius: 6px;
+}
+
+.confirmation-root .dialog-root .warning-icon {
+    font-size: 1.6rem;
+    color: hsl(39, 90%, 50%);
+}
+
+.confirmation-root .dialog-root p {
+    margin: 0.5rem;
+}
+
+.confirmation-root .dialog-root button {
+    margin: 1rem;
+    padding: 0.5rem;
+    width: 8rem;
+    background-color: var(--green-lighter);
+    border: none;
+    border-radius: 4px;
+}
+
+.confirmation-root .dialog-root .rightButton {
+    background-color: lightgray;
+}

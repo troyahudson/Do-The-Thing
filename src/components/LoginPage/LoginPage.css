@@ -1,0 +1,29 @@
+.login-root {
+    /* width:500px; */
+    /* margin: auto; */
+    /* padding: 1rem; */
+    /* border: solid red 1px */
+}
+
+.signup-root .signup-form,
+.login-root .login-form {
+    /* border: solid red 1px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 65vw;
+    max-width: 400px;
+    margin: auto;
+}
+
+.signup-root button,
+.login-root button {
+    margin: 1rem 0;
+}
+
+.signup-root hr,
+.login-root hr {
+    width: 100%;
+    /* margin: auto; */
+}

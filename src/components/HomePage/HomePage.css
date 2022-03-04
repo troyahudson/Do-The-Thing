@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;600;700&display=swap');
+
+.home-page-root {
+margin-bottom: 2rem;
+}
+
+.home-page-root h1 {
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: -0.06rem;
+}
+
+.welcome-message-root {
+    /* background-color: aliceblue; */
+    width: 80vw;
+    max-width: 850px;
+    margin: auto;
+    padding: 0.4rem;
+}
+
+.welcome-message-root > p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.welcome-message-root a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.welcome-message-root a:hover {
+    color: var(--green)
+}
+
+.welcome-message-root sup {
+    font-size: 1.2rem;
+    color: #00D26A;
+    /* font-weight: 600; */
+    vertical-align: bottom;
+}
+
+.welcome-message-root .footnote {
+    font-style: italic;
+    /* font-weight: 400; */
+    font-size: 1rem;
+}

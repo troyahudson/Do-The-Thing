@@ -1,0 +1,122 @@
+.task-card-root {
+    background-color: hsl(208, 100%, 90%);
+    border-radius: 5px;
+    padding: 0.6rem;
+}
+
+.task-card-root .top-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items:center;
+}
+
+.task-card-root .task-name.checked {
+    text-decoration: line-through;
+}
+
+.task-card-root .task-info {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-card-root .task-info .icon {
+    cursor: pointer;
+}
+
+.task-card-root .task-info .options .icon {
+    margin-left: 1rem;
+}
+
+.task-card-root .task-info .options {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.task-card-root .task-info .options.visible {
+    opacity: 100;
+    visibility: visible;
+    transition: visibility 0s, opacity 130ms ease-in-out;
+}
+
+.task-card-root .task-info .icon.edit.checked, 
+.task-card-root .task-info .icon.delete.checked {
+    opacity: 50%;
+}
+
+.task-card-root .task-info .icon.edit:hover,
+.task-card-root .task-info .icon.delete:hover {
+    filter: contrast(50%);
+}
+
+.task-card-root .task-info .icon.checkbox>* {
+    font-size: 1.4rem;
+    vertical-align: middle;
+}
+
+.task-card-root .task-info .icon.checkbox>*:hover {
+    filter:contrast(50%)
+}
+
+.task-card-root .task-info .task-status {
+    background-color: hsl(150, 60%, 55%);
+    padding: 0.1rem 0.3rem;
+    border-radius: 0.2rem;
+    /* line-height:100%; */
+}
+
+.task-card-root .task-info .task-status.checked {
+    background-color: rgb(123, 133, 138);
+    color: #efef
+}
+
+.task-card-root .task-name.task-info {
+    /* border: solid blue 1px; */
+    /* max-width: 255ch; */
+    /* display: flex; */
+    flex-grow: 1;
+
+}
+
+.task-card-root .task-name input {
+    margin: 0;
+    font-size: inherit;
+    font-family: inherit;
+    background-color: transparent;
+    border: 0;
+    flex-grow: 2;
+
+}
+
+.task-card-root.editing,
+.task-card-root:focus-within {
+    box-shadow: 1px 1px 4px -2px var(--blue-dark)
+}
+
+.task-card-root .task-name input:focus {
+    transform: scale(102%);
+    transition: all 50ms ease;
+    border: none;
+    outline: none;
+
+}
+
+.task-card-root .task-description {
+    opacity: 70%;
+    text-align: left;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+}
+
+.project-page-root .task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 90vw;
+    max-width: 650px;
+    margin: auto;
+    margin-top: 1rem;
+}

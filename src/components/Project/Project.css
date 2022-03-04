@@ -1,0 +1,149 @@
+.project-card-root {
+    background-color: var(--green-light);
+    border-radius: 6px;
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 400px;
+}
+
+.project-card-root .header {
+    display: flex;
+    flex-direction: row;
+    padding: 0.6rem 0;
+    justify-content: center;
+    justify-items: flex-start;
+}
+
+.project-card-root .header:hover {
+    background-color: var(--green-light);
+    filter: brightness(105%);
+    border-radius: 6px;
+
+}
+
+.project-card-root h3 {
+    width: 100%;
+}
+
+.project-card-root .toggle-btn {
+    text-align: left;
+    height: 1.2rem;
+    /* vertical-align: baseline; */
+    font-size: 1.2rem;
+    padding-left: 0.4rem;
+    padding-bottom: 0.3rem;
+    color: var(--green-darker);
+}
+
+.project-card-root .toggle-btn:hover {
+    transition: all 0.1s ease-in;
+/* color: white; */
+background-color: var(--green-lighter);
+opacity: 75%;
+}
+
+/* .project-card-root .header a {
+    position: absolute; 
+    top: 0;
+    left: 1rem;
+    vertical-align: middle;
+    font-size: 1.2rem;
+} */
+
+.project-card-root h2,
+.project-card-root h3 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.project-card-root .task-list {
+    width: 100%;
+    background-color: hsl(137, 45%, 85%);
+    border-radius: 0 0 4px 4px;
+}
+
+.project-card-root .task-list:hover {
+}
+
+.project-card-root .task-list .task-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #eee;
+    padding: 0.2rem 0.6rem;
+    box-shadow: 0 0 4px -3px inset;
+    /* width: 100%; */
+    /* margin: auto; */
+    /* margin: 0.2rem 0; */
+}
+
+
+.project-page-root .project-details .btn {
+    cursor: pointer;
+    margin: 0.2rem;
+    vertical-align:middle;
+    opacity: 50%;
+    font-size: 1rem;
+}
+
+.project-page-root .edit.btn {
+    margin-left: 0.5rem;
+}
+
+.project-page-root .project-details {
+    display: flex;
+    flex-direction: column;
+    width: 90vw;
+    max-width: 650px;
+    margin: auto;
+}
+
+.project-page-root .btn:hover {
+    opacity: 100%;
+}
+
+.project-page-root .new-task.btn {
+    margin: 0.8rem;
+    padding: 0.5rem;
+    background-color: var(--green-lighter);
+    border: none;
+    border-radius: 4px;
+}
+
+.project-page-root textarea {
+    resize: none;
+    text-align: center;
+    font-family: inherit;
+    font-size: 1rem;
+    width: 80%;
+    overflow: auto;
+    /* margin: 0; */
+    padding: 0.4rem;
+    border: none;
+    outline-color: var(--green-light);
+}
+
+.project-page-root textarea:enabled {
+    text-align: left;
+}
+
+.project-page-root .buttons {
+    /* opacity: 60%; */
+    font-size: 1.2rem;
+    /* position: absolute;
+    bottom: 0.5rem;
+    right: 0.2rem; */
+    display: flex;
+    flex-direction: row;
+    gap: 0.2rem;
+    justify-content: flex-end;
+}
+
+.project-page-root summary{
+    text-align: left;
+    font-size: 1.2rem;
+}
