@@ -3,10 +3,10 @@ import { Project } from "../models/project.model";
 import { Task } from "../models/task.model";
 import { User } from "../models/user.model";
 const axios = require("axios");
-const URL = `http://localhost:8080/api`;
+const URL = `https://do-the-thing-343117.ue.r.appspot.com/api`;
 
 const api = {
-  
+
   /* User */
   login: (user: User) => {
     return axios.post(`${URL}/users/login`, user);
@@ -20,7 +20,7 @@ const api = {
   getUserById: (userId: string) => {
     return axios.get(`${URL}/users/${userId}`);
   },
-  
+
   /* Organization */
   addNewOrg: (org: Organization) => {
     return axios.post(`${URL}/orgs`, org);
@@ -29,7 +29,7 @@ const api = {
   getOrgsByAdminUserId: (userId: string) => {
     return axios.get(`${URL}/orgs/admin/${userId}`);
   },
-  
+
   /* Affiliation */
   addNewAffiliation: (affiliation: {}) => {
     return axios.post(`${URL}/affiliations`, affiliation);
@@ -77,8 +77,8 @@ const api = {
     return axios.get(`${URL}/projects/createdBy/${userId}`);
   },
 
-    /* Team */
-  addNewTeam: (team: {}) => {    
+  /* Team */
+  addNewTeam: (team: {}) => {
     return axios.post(`${URL}/teams`, team);
   },
 
