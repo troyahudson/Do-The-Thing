@@ -65,7 +65,7 @@ export default function ProjectCard({ project }) {
             return (
               <div className='task-card' key={t.id} onClick={() => { navigate(`/projects/${project.id}`) }}>
                 <div>{t.name}</div>
-                <div>{t.status}</div>
+                {/* <div>{t.status}</div> */}
               </div>
             )
           })}

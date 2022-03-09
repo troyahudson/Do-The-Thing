@@ -15,7 +15,6 @@ export default function HomePage({ }: Props) {
   const navigate = useNavigate();
   const user = localStorage.getActiveUser();
   const location = useLocation();
-  console.log(location.pathname);
 
   // useEffect(() => {
   //   if (!user) {

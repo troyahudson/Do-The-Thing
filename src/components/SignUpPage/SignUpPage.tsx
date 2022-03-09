@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { Context } from '../../App';
 import { Organization } from '../../models/organization.model';
 import { Project } from '../../models/project.model';
+import { Task } from '../../models/task.model';
 import { User } from '../../models/user.model';
 import '../LoginPage/LoginPage.css'
 
@@ -42,7 +43,18 @@ export default function SignUpPage({ }: Props) {
                                 const newTeam = { userId: user.id, projectId: newProject.id, permission: 3 }
                                 api.addNewTeam(newTeam)
                                     .then((res: { data: { message: string } }) => {
-                                        navigate(`/users/${user.id}`);
+
+                                        const newTask1 = new Task({ ...Task, name: "This is your first task", description: "From the project page, you can add, edit, and delete tasks.", createdByUserId: user.id, assignedToUserId: user.id, projectId: newProject.id })
+                                        // console.log(newTask1);
+                                        
+
+                                        api.addNewTask(newTask1)
+                                            .then((res: any) => {
+                                                navigate(`/users/${user.id}`);
+                                            })
+                                            .catch((err: any) => {
+                                                console.error(err);
+                                            });
                                     })
                                     .catch((err: any) => {
                                         console.error(err);

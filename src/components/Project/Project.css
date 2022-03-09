@@ -46,14 +46,6 @@ background-color: var(--green-lighter);
 opacity: 75%;
 }
 
-/* .project-card-root .header a {
-    position: absolute; 
-    top: 0;
-    left: 1rem;
-    vertical-align: middle;
-    font-size: 1.2rem;
-} */
-
 .project-card-root h2,
 .project-card-root h3 {
     margin: 0;
@@ -64,9 +56,6 @@ opacity: 75%;
     width: 100%;
     background-color: hsl(137, 45%, 85%);
     border-radius: 0 0 4px 4px;
-}
-
-.project-card-root .task-list:hover {
 }
 
 .project-card-root .task-list .task-card {
@@ -82,24 +71,62 @@ opacity: 75%;
 }
 
 
-.project-page-root .project-details .btn {
-    cursor: pointer;
-    margin: 0.2rem;
-    vertical-align:middle;
-    opacity: 50%;
-    font-size: 1rem;
-}
-
-.project-page-root .edit.btn {
-    margin-left: 0.5rem;
-}
-
 .project-page-root .project-details {
     display: flex;
     flex-direction: column;
-    width: 90vw;
-    max-width: 650px;
+    width: 650px;
+    max-width: 90vw;
     margin: auto;
+}
+
+.project-page-root .project-details .btn {
+    cursor: pointer;
+    margin: 0 0.5rem;
+    vertical-align:middle;
+    opacity: 50%;
+    font-size: 1.2rem;
+}
+
+.project-page-root .project-details .project-description,
+.project-page-root .project-details .project-name {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    /* border: solid blue 1px; */
+    margin: 0.5rem auto;
+    /* width: fit-content; */
+}
+
+.project-page-root .project-details .project-description {
+
+}
+
+
+.project-page-root .project-name h2 {
+margin: 0;
+text-align: center;
+}
+
+.project-page-root .project-description .buttons,
+.project-page-root .project-name .buttons {
+    position: absolute;
+    right: -4.5rem;
+    /* top: 1rem; */
+}
+
+.project-page-root .project-details .project-name input {
+    font-family: inherit;
+    border: none;
+    /* outline: none; */
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+    /* margin: 0; */
+    padding: 0;
+    /* margin: 0.7rem; */
+    width: 100%;
 }
 
 .project-page-root .btn:hover {
@@ -119,7 +146,7 @@ opacity: 75%;
     text-align: center;
     font-family: inherit;
     font-size: 1rem;
-    width: 80%;
+    /* width: 80%; */
     overflow: auto;
     /* margin: 0; */
     padding: 0.4rem;
@@ -129,21 +156,88 @@ opacity: 75%;
 
 .project-page-root textarea:enabled {
     text-align: left;
+    /* margin: 0; */
+    width: 600px;
+    max-width: 80vw;
 }
 
 .project-page-root .buttons {
     /* opacity: 60%; */
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     /* position: absolute;
     bottom: 0.5rem;
     right: 0.2rem; */
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     gap: 0.2rem;
-    justify-content: flex-end;
+    justify-content: flex-end; */
 }
+
 
 .project-page-root summary{
     text-align: left;
     font-size: 1.2rem;
+}
+
+
+.project-page-root .list-container {
+    /* max-height: 60vh; */
+    overflow: auto;
+    margin: auto;
+    width: fit-content;
+}
+
+.project-page-root .delete.btn {
+    background-color: var(--red-lighter);
+    font-size: 1.6rem;
+    padding: 0.8rem;
+    margin: 1rem;
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    right: 0.5rem;
+    opacity: 50%;
+}
+
+.project-page-root .delete.btn:hover {
+    opacity: 100%;
+}
+
+.project-page-root .delete.btn[data]:hover::after {
+    content: attr(data);
+    background: black;
+    color: cyan;
+    border-bottom: 0 none transparent;
+    left: 2rem;
+}
+
+.project-page-root .footer {
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    width: 100%;
+    height: fit-content;
+    height: 3rem;
+}
+
+@media screen and (max-width: 400px) {
+
+    .project-page-root .project-details {
+        width: 85vw;
+        position: initial;
+    }
+
+    /* .project-page-root textarea:enabled {
+        width: 70vw;
+    } */
+
+    .project-page-root .project-description .buttons,
+    .project-page-root .project-name .buttons {
+    /* position: static; */
+        right: -2rem;
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 0.8rem;
+    }
 }

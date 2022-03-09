@@ -1,7 +1,6 @@
 import { faCheckSquare, faSquare } from '@fortawesome/free-regular-svg-icons';
 import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { func, string } from 'prop-types';
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Context } from '../../../App';
 import { Task } from '../../../models/task.model'
@@ -59,7 +58,6 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
             }).catch(err => {
                 console.error(err)
             })
-        console.log(status);
     }
 
     function editTask() {
@@ -91,8 +89,7 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
         api.updateTask({ ...task, name: editingValue })
             .then(res => {
                 document.getElementById('task-card-root')?.classList.remove("editing");
-                if (newTask.name != '')
-                {
+                if (newTask.name != '') {
                     document.getElementById("name").disabled = true;
                 }
             })
@@ -118,13 +115,23 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
     }
 
     function toggleOptions() {
-        if (!isHovering){
+        if (!isHovering) {
             setIsHovering(true);
             optionsRef.current?.classList.add("visible")
         } else {
             setIsHovering(false)
             optionsRef.current?.classList.remove("visible")
         }
+    }
+
+    function showOptions() {
+        setIsHovering(true);
+        optionsRef.current?.classList.add("visible")
+    }
+
+    function hideOptions() {
+        setIsHovering(false);
+        optionsRef.current?.classList.remove("visible")
     }
 
     useEffect(() => {
@@ -147,9 +154,9 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
     return (
         <div
             className='task-card-root'
-            onMouseEnter={toggleOptions}
-            onMouseLeave={toggleOptions}
-            
+            onMouseEnter={showOptions}
+            onMouseLeave={hideOptions}
+
         >
             <div className='top-section'>
                 <div ref={nameRef} className='task-info task-name'>
@@ -158,7 +165,7 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
                             : <FontAwesomeIcon icon={faSquare} />}
                     </div>
                     <input type="text"
-                    ref={inputRef}
+                        ref={inputRef}
                         autoFocus
                         disabled={true}
                         className='textInput'

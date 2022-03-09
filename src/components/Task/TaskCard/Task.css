@@ -28,18 +28,27 @@
 }
 
 .task-card-root .task-info .options .icon {
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
+    color: #555
 }
 
 .task-card-root .task-info .options {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    
     visibility: hidden;
-    opacity: 0;
+    opacity: 0.1;
+
+    visibility: visible;
+    opacity: 1;
 }
 
 .task-card-root .task-info .options.visible {
-    opacity: 100;
+    opacity: 1;
     visibility: visible;
-    transition: visibility 0s, opacity 130ms ease-in-out;
+    transition: visibility 0s, opacity 100ms ease-in-out;
+    /* transition: all 100ms ease-in-out; */
 }
 
 .task-card-root .task-info .icon.edit.checked, 
@@ -108,7 +117,7 @@
     opacity: 70%;
     text-align: left;
     margin-left: 2rem;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 }
 
 .project-page-root .task-list {
@@ -119,4 +128,11 @@
     max-width: 650px;
     margin: auto;
     margin-top: 1rem;
+}
+
+@media screen and (max-width: 400px) {
+    .task-card-root .task-info .options {
+        visibility:visible;
+        opacity: 1;
+    }
 }

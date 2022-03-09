@@ -10,6 +10,7 @@ import { useApi } from './services/axios.service';
 import { User } from './models/user.model';
 import SignUpPage from './components/SignUpPage/SignUpPage';
 import { Project } from './models/project.model';
+import ProjectBoard from './components/Project/ProjectBoard/ProjectBoard';
 
 
 type Props = {};
@@ -45,6 +46,7 @@ function App({ }: Props) {
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/users/:userId" element={<UserPage />} />
               <Route path="/projects/:projectId" element={<ProjectPage />} />
+              {/* <Route path="/projects/:projectId/board" element={<ProjectBoard />} /> */}
             </Route>
             <Route path="*" element={<div><Link to="/"><button type="button">Home</button></Link> <div>404 - Page not found</div></div>} ></Route>
           </Routes>

@@ -6,6 +6,13 @@
   --green-lighter: hsl(137, 45%, 75%);
   --green-dark: hsl(137, 71%, 41%);
   --green-darker: hsl(137, 72%, 35%);
+
+  --red: hsl(17, 65%, 51%);
+  --red-light: hsl(17, 70%, 66%);
+  --red-lighter: hsl(17, 70%, 75%);
+  --red-dark: hsl(17, 71%, 41%);
+  --red-darker: hsl(17, 72%, 35%);
+
   --blue: hsl(170, 65%, 51%);
   --blue-light: hsl(170, 55%, 66%);
   --blue-lighter: hsl(170, 45%, 75%);
