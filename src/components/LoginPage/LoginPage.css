@@ -20,6 +20,22 @@
 .signup-root button,
 .login-root button {
     margin: 1rem 0;
+    border: none;
+    padding: 0.3rem;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    background-color: lightgray;
+}
+
+.signup-root .action-btn,
+.login-root .action-btn {
+    background-color: var(--green-light);
+}
+
+.signup-root .link-btn,
+.login-root .link-btn {
+    width: 8rem;
+    margin: 1rem auto;
 }
 
 .signup-root hr,

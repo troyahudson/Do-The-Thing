@@ -17,6 +17,9 @@ export default function ProjectCard({ project }) {
   const [tasks, setTasks] = useState([])
   const user = localStorage.getActiveUser();
   const [isListOpen, setIsListOpen] = useState(true);
+  const [tasksTotal, setTasksTotal] = useState(0);
+  var [tasksComplete, setTasksComplete] = useState(0);
+  // var tasksComplete = 0;
 
   function toggleList() {
     var toggle = document.getElementsByClassName("toggle-btn")
@@ -45,16 +48,29 @@ export default function ProjectCard({ project }) {
 
     api.getTasksByProjectId(project.id)
       .then(res => {
-        setTasks(res.data)
+        setTasks(res.data);
+        setTasksTotal(res.data.length);
+        let t = null;
+        for (t of res.data) {
+          if (t.status == Task.STATUS.COMPLETE) {
+            setTasksComplete(tasksComplete++);
+          }
+        }
+        console.log(tasksComplete);
+
       }).catch(err => {
         console.error(err);
       })
+
   }, [])
 
   return (
     <div className='project-card-root'>
-      <div className='header' onClick={() => { navigate(`/projects/${project.id}`) }}>
+      <div className='header' onClick={() => { navigate(`/project/${project.id}`) }}>
         <h3 >{project.name}</h3>
+        <div className='stats'>
+          {tasks.length > 0 && <span>{tasksComplete}/{tasksTotal} Tasks Completed</span>}
+        </div>
       </div>
       {tasks.length > 0 &&
         <div className="task-list">
@@ -63,7 +79,7 @@ export default function ProjectCard({ project }) {
           </div>
           {isListOpen && filteredTasks?.map((t) => {
             return (
-              <div className='task-card' key={t.id} onClick={() => { navigate(`/projects/${project.id}`) }}>
+              <div className='task-card' key={t.id} onClick={() => { navigate(`/project/${project.id}`) }}>
                 <div>{t.name}</div>
                 {/* <div>{t.status}</div> */}
               </div>

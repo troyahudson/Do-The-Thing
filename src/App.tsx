@@ -44,9 +44,9 @@ function App({ }: Props) {
             <Route path="/" element={<HomePage />}>
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/users/:userId" element={<UserPage />} />
-              <Route path="/projects/:projectId" element={<ProjectPage />} />
-              {/* <Route path="/projects/:projectId/board" element={<ProjectBoard />} /> */}
+              <Route path="/user/:userId" element={<UserPage />} />
+              <Route path="/project/:projectId" element={<ProjectPage />} />
+              {/* <Route path="/project/:projectId/board" element={<ProjectBoard />} /> */}
             </Route>
             <Route path="*" element={<div><Link to="/"><button type="button">Home</button></Link> <div>404 - Page not found</div></div>} ></Route>
           </Routes>

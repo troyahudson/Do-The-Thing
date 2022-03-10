@@ -74,7 +74,7 @@ export default function ProjectPage() {
 
     api.removeProjectById(projectId)
       .then(res => {
-        navigate(`/users/${user.id}`)
+        navigate(`/user/${user.id}`)
       })
       .catch(err => {
         console.error(err);
@@ -155,8 +155,9 @@ export default function ProjectPage() {
       })
   }, []);
 
-  toDoTasks = tasks.filter(task => task.status != Task.STATUS.COMPLETE).sort((a, b) => a.dateCreated - b.dateCreated);
-  completedTasks = tasks.filter(task => task.status == Task.STATUS.COMPLETE).sort((a, b) => a.dateCreated - b.dateCreated);
+  toDoTasks = tasks.filter(task => task.status != Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - a.dateCreated);
+
+  completedTasks = tasks.filter(task => task.status == Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - b.dateCreated);
 
   return (
     <div className='project-page-root'>

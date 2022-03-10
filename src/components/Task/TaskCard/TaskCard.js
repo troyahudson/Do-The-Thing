@@ -34,14 +34,18 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
         if (task.status == Task.STATUS.COMPLETE) {
             // setStatus(Task.STATUS.COMPLETE);
             task.status = Task.STATUS.TO_DO;
+            task.dateCompleted = null;
         } else {
             // setStatus(Task.STATUS.TO_DO);
             task.status = Task.STATUS.COMPLETE;
+            /* Convert  dateCompleted */
+            task.dateCompleted = new Date().toISOString().slice(0, 19).replace('T', ' ');
+            console.log(task.dateCompleted);
         }
 
         setTasks(tasks.map(t => {
             if (t.id == task.id) {
-                return { ...t, status: task.status }
+                return { ...t, status: task.status, dateCompleted: task.dateCompleted }
             } else {
                 return t;
             }

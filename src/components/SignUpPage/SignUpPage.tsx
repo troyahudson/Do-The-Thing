@@ -50,7 +50,7 @@ export default function SignUpPage({ }: Props) {
 
                                         api.addNewTask(newTask1)
                                             .then((res: any) => {
-                                                navigate(`/users/${user.id}`);
+                                                navigate(`/user/${user.id}`);
                                             })
                                             .catch((err: any) => {
                                                 console.error(err);
@@ -121,7 +121,6 @@ export default function SignUpPage({ }: Props) {
     }
 
     return (
-        <div>
             <div className='signup-root'>
                 <h2>Sign Up</h2>
                 <form className='signup-form' onSubmit={handleSubmit}>
@@ -135,16 +134,14 @@ export default function SignUpPage({ }: Props) {
                         name='password'
                         value={user.password}
                         onChange={handleChange}></input>
-                    <button type="submit" onClick={handleSubmit}>Register</button>
+                    <button className='action-btn' type="submit" onClick={handleSubmit}>Register</button>
                     <hr />
                     <div>Already have an account?</div>
-                    <button type="button"
+                    <button className='link-btn' type="button"
                         onClick={() => { navigate("/login") }}>
                         Login
                     </button>
                 </form>
-                {/* <div>Logged in as: {activeUser?.email}</div> */}
             </div>
-        </div>
     );
 }
