@@ -2,7 +2,7 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { stringify } from 'querystring';
 import React, { useContext, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { Context } from '../../App'
 import './NavBar.css'
 
@@ -28,27 +28,18 @@ export default function NavBar({ }: Props) {
     }, [activeUser?.id]);
 
     return (
+        <div>
         <div className='nav-bar-root'>
-            <div className='home-btn'>
-                <Link to={user ? `/users/${user?.id}` : '/'}
-                >☑️Do The Thing</Link>
+            <div>
+                <Link to={user ? `/user/${user?.id}` : '/'}>
+                    <img className='logo' src="https://i.postimg.cc/qvh7dN3c/dott-logo-white.png" />
+                </Link>
             </div>
             <div className='nav-items'>
                 {!user && <Link to="/login">Login</Link>}
-                {/* {!user && <Link to="/signup">Sign Up</Link>} */}
-                    {user && <div onClick={logOutUser}>Log Out</div>}
-                {user && <Link to={`/users/${user?.id}`}>
-                    <FontAwesomeIcon icon={faUser} fontSize="1.2rem" />
-                </Link>
-                }
+                {user && <div onClick={logOutUser}>Log Out</div>}
             </div>
-            {/* <Link to="/projects/:projectId">
-                <button type="button">Project Page</button>
-            </Link> */}
-            {/* {JSON.stringify(user, null, 2)} */}
-            {/* <span><b>LoggedIn: </b>{user?.email || "None"} </span> */}
-            {/* <div><b>Organization: </b>{user?.orgId || "None"}</div> */}
-            {/* <div><b>Project: </b>{activeProject?.name || "None"}</div> */}
-        </div >
+        </div>
+        </div>
     )
 }

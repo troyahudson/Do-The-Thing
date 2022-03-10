@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { Context } from '../../App';
-import { UserContext } from '../../contexts/UserContext';
-import { login } from '../../utils/login';
 import NavBar from '../NavBar/NavBar';
 import './HomePage.css'
 
 type Props = {};
-
 
 export default function HomePage({ }: Props) {
 
@@ -34,13 +31,14 @@ export default function HomePage({ }: Props) {
 
     return (
       <div className='welcome-message-root'>
+        <img className='logo' src="https://i.postimg.cc/gkF2VzXN/dott-logo-text-green.png" />
         <p><b>Do The Thing</b>&trade; is a project management app for people who hate project management apps.</p>
         <p>Right now, it can help you manage and organize personal to-do lists and tasks. DoTT<sup>*</sup> is still in active development,
           and we're working on growing it into a genuinely useful project management app.</p>
         <p>To get started, <Link to="/signup">
           sign up for a free account
         </Link>, <br />
-          or <Link to="/signup">
+          or <Link to="/login">
             login</Link> if you're already signed up.</p>
         <p>For more information about DoTT and my other projects, check out my website,
           <br />
