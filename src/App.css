@@ -40,6 +40,8 @@
 }
 
 .App input{
+  font-family: inherit;
+  font-size: inherit;
   outline-color: var(--green);
   font-size: 1rem;
   padding: 0.2rem;

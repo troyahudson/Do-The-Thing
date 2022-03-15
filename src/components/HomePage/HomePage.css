@@ -23,7 +23,7 @@
 .welcome-message-root {
     /* background-color: aliceblue; */
     width: 80vw;
-    max-width: 850px;
+    max-width: 800px;
     margin: auto;
     padding: 0.4rem;
 }
@@ -37,7 +37,7 @@
 
 .welcome-message-root > p {
     margin-bottom: 1rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .welcome-message-root a {
