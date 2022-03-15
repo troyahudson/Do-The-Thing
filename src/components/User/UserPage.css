@@ -1,0 +1,36 @@
+.user-page-root {
+    /* padding: 0 5rem; */
+}
+
+.user-page-root .user-info {
+    display: grid;
+    grid-template-columns: minmax(150px, max-content) minmax(150px, 3fr);
+    gap: 0.8rem;
+    max-width: 60vw;
+    /* width: 40vw; */
+    margin: auto;
+    /* text-align: right; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* border: solid blue 1px; */
+    padding: 2rem 5rem;
+}
+
+.user-page-root .user-info:nth-child(odd) {
+    text-align: right;
+}
+
+.user-page-root .user-info > * {
+    /* border: solid red 1px; */
+    padding: 0.2rem;
+    /* align-self: center; */
+}
+
+.user-page-root input {
+    border: none;
+    /* pointer-events:none; */
+}
+
+/* .user-page-root input:disabled {
+    color: inherit;
+} */
