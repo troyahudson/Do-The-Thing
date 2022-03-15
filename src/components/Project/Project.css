@@ -7,8 +7,7 @@
     flex-direction: column;
     justify-content: center;
     /* align-items: center; */
-    width: 90vw;
-    max-width: 400px;
+
 }
 
 .project-card-root .header {
@@ -59,7 +58,7 @@ opacity: 75%;
 .project-card-root .task-list {
     width: 100%;
     background-color: hsl(137, 45%, 85%);
-    border-radius: 0 0 4px 4px;
+    border-radius: 0 0 6px 6px;
 }
 
 .project-card-root .task-list .task-card {
@@ -69,9 +68,10 @@ opacity: 75%;
     background-color: #eee;
     padding: 0.2rem 0.6rem;
     box-shadow: 0 0 4px -3px inset;
-    /* width: 100%; */
-    /* margin: auto; */
-    /* margin: 0.2rem 0; */
+}
+
+.project-card-root .task-list .task-card:last-child {
+    border-radius: 0 0 6px 6px;
 }
 
 
@@ -81,12 +81,14 @@ opacity: 75%;
     width: 650px;
     max-width: 90vw;
     margin: auto;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .project-page-root .project-details .btn {
     cursor: pointer;
     margin: 0 0.5rem;
-    vertical-align:middle;
+    vertical-align:baseline;
     opacity: 15%;
     font-size: 1.1rem;
 }
@@ -100,10 +102,8 @@ opacity: 75%;
     position: relative;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: flex-start;
     /* border: solid blue 1px; */
-    margin: 0.5rem auto;
+    margin: auto;
     /* width: fit-content; */
 }
 
@@ -182,9 +182,10 @@ text-align: center;
 
 .project-page-root .list-container {
     /* max-height: 60vh; */
-    overflow: auto;
-    margin: auto;
-    width: fit-content;
+    /* overflow: auto; */
+    /* margin: auto; */
+    /* width: fit-content; */
+
 }
 
 .project-page-root .delete.btn {

@@ -14,13 +14,13 @@ import ProjectBoard from '../ProjectBoard/ProjectBoard';
 
 export default function ProjectPage() {
 
-  const { localStorage, api } = useContext(Context);
+  const { localStorage, api, setActiveProject } = useContext(Context);
   const user = localStorage.getActiveUser();
   const { projectId } = useParams();
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
   // const [project, setProject] = useState(null);
-  var project = localStorage.getActiveProject();
+  const project = localStorage.getActiveProject();
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false)
   const [newDescription, setNewDescription] = useState("");
@@ -37,7 +37,6 @@ export default function ProjectPage() {
         return t
       }
     })
-
 
     if (isEmptyTask) {
       const newTask = new Task({ ...Task, name: '', createdByUserId: user.id, assignedToUserId: user.id, assignedToUserName: user.email, projectId: projectId });
@@ -62,19 +61,27 @@ export default function ProjectPage() {
       })
   }
 
-  function deleteProject() {
+  function deleteAllTasks() {
 
     for (let task of tasks) {
       api.removeTask(task.id)
         .then((res) => {
+          setTasks((tasks) => {
+            return tasks.filter(t => t.id !== task.id)
+          })
         }).catch((err) => {
           console.error(err);
         })
     }
+  }
+
+  function deleteProject() {
+
+    deleteAllTasks();
 
     api.removeProjectById(projectId)
       .then(res => {
-        navigate(`/user/${user.id}`)
+        navigate(`/workspace/${user.id}`)
       })
       .catch(err => {
         console.error(err);
@@ -111,9 +118,10 @@ export default function ProjectPage() {
     // setProject(newProject);
     // setProject({ ...project, description: newDescription });
     // project.description = newDescription;
-    // localStorage.saveProject(newProject);
     api.updateProject(newProject)
       .then(res => {
+        // project.name = newProject.name;
+        // project.description = newProject.description;
         setIsEditingDescription(false)
         setIsEditingName(false)
       })
@@ -138,12 +146,13 @@ export default function ProjectPage() {
       .then(res => {
         // setProject(res.data);
         setNewProject(res.data);
+        // localStorage.saveProject(res.data)
+        setActiveProject(res.data)
         setNewDescription(res.data.description)
       })
       .catch(err => {
         console.error(err)
       });
-    // console.log(project);
 
     api.getTasksByProjectId(projectId)
       .then(res => {
@@ -156,72 +165,13 @@ export default function ProjectPage() {
   }, []);
 
   toDoTasks = tasks.filter(task => task.status != Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - a.dateCreated);
-
   completedTasks = tasks.filter(task => task.status == Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - b.dateCreated);
 
   return (
     <div className='project-page-root'>
       <div className='project-details'>
-        {!isEditingName ?
-          <div className='project-name'>
-            <h2>{newProject?.name}</h2>
-            <span className='buttons'>
-              <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editName} />
-            </span>
-          </div>
-          :
-          <div className="project-name">
-            <form
-              onSubmit={updateProject}
-            >
-              <input type="text"
-                name="name"
-                value={newProject.name}
-                onChange={handleChange}
-                autoFocus
-                size={newProject.name.length}
-              // maxLength={255}
-              />
-            </form>
-            <span className='buttons'>
-              <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
-              <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
-            </span>
-          </div>
-        }
-
-        {!isEditingDescription ?
-          <div className='project-description'>
-            <span>{newProject?.description}
-            </span>
-            <span className='buttons'>
-              <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editDescription} />
-            </span>
-          </div >
-          :
-          <div className='project-description'>
-            <form
-              className="description-form"
-              // id="descriptionForm"
-              onSubmit={updateProject}
-            >
-              <textarea
-                name="description"
-                value={newProject?.description}
-                onChange={handleChange}
-                type="submit"
-                form="descriptionForm"
-                onKeyDown={onEnterPress}
-                maxLength="255"
-                autoFocus
-              />
-            </form>
-            <span className='buttons'>
-              <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
-              <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
-            </span>
-          </div>
-        }
+        <ProjectName />
+        <ProjectDescription />
       </div>
       <button className='new-task btn' type="button" onClick={addTask}>
         Create New Task
@@ -264,13 +214,12 @@ export default function ProjectPage() {
         <FontAwesomeIcon className='delete btn' icon={faTrashCan} onClick={toggleModal} data="Delete Project" />
       </div>
 
-      <ProjectBoard
+      {/* <ProjectBoard
         tasks={tasks}
         project={project}
         setTasks={setTasks}
         deleteTask={deleteTask}
-      />
-
+      /> */}
 
       {isModalOpen &&
         <ConfirmationDialog
@@ -283,4 +232,116 @@ export default function ProjectPage() {
       }
     </div>
   );
+
+  function ProjectName() {
+
+    if (isEditingName) {
+      return (
+        <div className="project-name">
+          <form
+            onSubmit={updateProject}
+          >
+            <input type="text"
+              name="name"
+              value={newProject.name}
+              onChange={handleChange}
+              autoFocus
+              size={newProject.name.length}
+            // maxLength={255}
+            />
+          </form>
+          <span className='buttons'>
+            <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
+            <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
+          </span>
+        </div>
+      )
+    } else {
+      return (
+        <div className='project-name'>
+          <h2>{newProject?.name}</h2>
+          <span className='buttons'>
+            <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editName} />
+          </span>
+        </div>
+      )
+    }
+
+  }
+
+  function ProjectDescription() {
+
+    if (newProject?.description && !isEditingDescription) {
+      return (
+        <div className='project-description'>
+          <span>{newProject?.description}
+          </span>
+          <span className='buttons'>
+            <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editDescription} />
+          </span>
+        </div >
+      )
+    } else if (isEditingDescription) {
+      return (
+        <div className='project-description'>
+          <form
+            className="description-form"
+            // id="descriptionForm"
+            onSubmit={updateProject}
+          >
+            <textarea
+              name="description"
+              value={newProject?.description}
+              onChange={handleChange}
+              type="submit"
+              form="descriptionForm"
+              onKeyDown={onEnterPress}
+              maxLength="255"
+              autoFocus
+            />
+          </form>
+          <span className='buttons'>
+            <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
+            <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
+          </span>
+        </div>
+      )
+      // } else if (isEditingName && !newProject?.description) {
+      //   return (
+      //     <div className='project-description'>
+      //       <form
+      //         className="description-form"
+      //         // id="descriptionForm"
+      //         onSubmit={updateProject}
+      //       >
+      //         <textarea
+      //           name="description"
+      //           // placeholder='Project description...'
+      //           value={newProject.description}
+      //           onChange={handleChange}
+      //           type="submit"
+      //           form="descriptionForm"
+      //           onKeyDown={onEnterPress}
+      //           maxLength="255"
+      //         />
+      //       </form>
+      //       <span className='buttons'>
+      //         <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
+      //         <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
+      //       </span>
+      //     </div>
+      //   )
+    }
+    else {
+      return (
+        <div className='project-description'>
+          <div>Add project description here</div>
+          <span className='buttons'>
+            <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editDescription} />
+          </span>
+        </div >
+      )
+    }
+  }
+
 }
