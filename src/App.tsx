@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
 import './App.css';
 import HomePage from './components/HomePage/HomePage';
-import UserPage from './components/UserPage/UserPage';
+import WorkspacePage from './components/Workspace/WorkspacePage';
 import ProjectPage from './components/Project/ProjectPage/ProjectPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import { useLocalStorage } from './services/local.storage';
@@ -11,6 +11,7 @@ import { User } from './models/user.model';
 import SignUpPage from './components/SignUpPage/SignUpPage';
 import { Project } from './models/project.model';
 import ProjectBoard from './components/Project/ProjectBoard/ProjectBoard';
+import UserPage from './components/User/UserPage';
 
 
 type Props = {};
@@ -27,11 +28,14 @@ function App({ }: Props) {
   const api = useApi();
   const localStorage = useLocalStorage();
   const [activeUser, setActiveUser] = useState({ email: "", password: "" });
+  const [activeProject, setActiveProject] = useState(null)
 
 
   const value = {
     activeUser,
     setActiveUser,
+    activeProject,
+    setActiveProject,
     api,
     localStorage
   }
@@ -45,6 +49,7 @@ function App({ }: Props) {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/user/:userId" element={<UserPage />} />
+              <Route path="/workspace/:userId" element={<WorkspacePage />} />
               <Route path="/project/:projectId" element={<ProjectPage />} />
               {/* <Route path="/project/:projectId/board" element={<ProjectBoard />} /> */}
             </Route>

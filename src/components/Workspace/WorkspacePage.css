@@ -1,0 +1,43 @@
+.workspace-page-root {
+    /* padding: 0; */
+}
+
+.workspace-page-root h2 {
+    font-size: 2rem;
+    margin: 0;
+    margin-bottom: 1rem;
+}
+
+.workspace-page-root button {
+    background-color: var(--green);
+    font-weight: 500;
+    font-size: 0.9em;
+    border: none;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.25rem;
+    margin: 1rem;
+}
+
+.workspace-page-root .project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, 1fr); */
+    gap: 1.5rem;
+  /* gap: clamp(4px, 2rem, 2rem ); */
+
+  width: 90vw;
+  /* max-width: 300px; */
+  margin: auto;
+  /* padding: 0 1rem; */
+  /* max-width: 90vw; */
+
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    justify-items: center;
+    max-width: 90vw;
+    margin: 1rem auto; */
+}
+
