@@ -1,0 +1,75 @@
+.welcome-message-root {
+    width: 80vw;
+    max-width: 800px;
+    margin: auto;
+    padding: 0.4rem;
+}
+
+.welcome-message-root .logo {
+    /* height: 150px; */
+    width: 65vw;
+    max-width: 400px;
+    margin: 1rem auto 0;
+}
+
+.welcome-message-root h2 {
+    font-size: 1.7rem;
+    color: var(--green-dark);
+}
+
+.welcome-message-root .text {
+    text-align: justify;
+    /* text-indent: 3rem; */
+}
+
+.welcome-message-root .callout {
+    font-size: 1.4rem;
+    font-style: italic;
+}
+
+.welcome-message-root > p {
+    margin-bottom: 1rem;
+    font-size: 1.2rem
+}
+
+.welcome-message-root img {
+    width: 100%;
+    margin: auto;
+}
+
+.welcome-message-root ul {
+    margin: auto;
+    width: 90%;
+    max-width: 650px;
+    font-size: 1.2rem;
+    padding: 0;
+}
+
+.welcome-message-root li {
+    /* display:block; */
+    margin: 0.5rem 0;
+    text-align: justify;
+}
+
+.welcome-message-root a {
+    text-decoration: none;
+    color: var(--green-dark);
+    font-weight: 600;
+}
+
+.welcome-message-root a:hover {
+    color: var(--green)
+}
+
+.welcome-message-root sup {
+    font-size: 1.2rem;
+    color: #00D26A;
+    /* font-weight: 600; */
+    vertical-align: bottom;
+}
+
+.welcome-message-root .footnote {
+    font-style: italic;
+    /* font-weight: 400; */
+    font-size: 1rem;
+}

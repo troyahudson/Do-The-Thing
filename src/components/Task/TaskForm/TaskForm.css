@@ -11,8 +11,8 @@
 
 .task-form-root .form-container {
     background-color: #eee;
-    width: 75vw;
-    max-width: 550px;
+    width: 80vw;
+    max-width: 600px;
     margin: auto;
     padding: 1.8rem;
     position: fixed;
@@ -23,10 +23,21 @@
     box-shadow: 1px 1px 8px -2px;
 }
 
+.task-form-root .form-container summary {
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    /* background-color: red; */
+}
+
+.task-form-root .form-container details {
+    width: 100%;
+}
+
 .task-form-root .form-container input {
     min-height: 1rem;
     padding: 0.4rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     outline-color: var(--green-light);
     border: none;
     /* width: 80%; */
@@ -47,11 +58,11 @@
 
 .task-form-root .form-container textarea {
     resize: none;
-    height: 4rem;
+    /* height: 4rem; */
     border: none;
     padding: 0.4rem;
-    width: initial;
-    /* margin: auto; */
+    width: 98%;
+    margin: auto;
 }
 
 .task-form-root .form-container button {

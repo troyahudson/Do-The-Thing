@@ -12,24 +12,26 @@
 
 .project-card-root .header {
     display: flex;
+    position: relative;
     flex-direction: column;
-    padding: 0.6rem 0;
+    /* padding: 0.6rem 0; */
     justify-content: center;
     justify-items: flex-start;
+    border-radius: 6px 6px 0 0;
 }
 
 .project-card-root .header:hover {
-    background-color: var(--green-light);
-    filter: brightness(105%);
-    border-radius: 6px;
+    background-color: hsl(137, 79%, 69%);
 }
 
 .project-card-root .header .stats {
-
+    
 }
 
 .project-card-root h3 {
+    border-radius: 6px 6px 0 0;
     width: 100%;
+    padding: 0.6rem 0;
 }
 
 .project-card-root .toggle-btn {
@@ -74,6 +76,18 @@ opacity: 75%;
     border-radius: 0 0 6px 6px;
 }
 
+.project-page-root .btn {
+    font-size: 1.6rem;
+    padding: 0.8rem;
+    /* margin: 1rem; */
+    border-radius: 50%;
+    cursor: pointer;
+    /* position: absolute;
+    bottom: 0;
+    right: 0.5rem; */
+    opacity: 50%;
+}
+
 
 .project-page-root .project-details {
     display: flex;
@@ -86,7 +100,7 @@ opacity: 75%;
 }
 
 .project-page-root .project-details .btn {
-    cursor: pointer;
+    padding: 0rem;
     margin: 0 0.5rem;
     vertical-align:baseline;
     opacity: 15%;
@@ -101,22 +115,23 @@ opacity: 75%;
 .project-page-root .project-details .project-name {
     position: relative;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     /* border: solid blue 1px; */
     margin: auto;
     /* width: fit-content; */
 }
 
 .project-page-root .project-name h2 {
-margin: 0;
+margin: 1rem 0 0;
 text-align: center;
 }
 
 .project-page-root .project-description .buttons,
 .project-page-root .project-name .buttons {
-    position: absolute;
-    right: -4.5rem;
-    /* top: 1rem; */
+    /* position: absolute;
+    right: 0rem;
+    bottom: -1.4rem; */
 }
 
 .project-page-root .project-details .project-name input {
@@ -127,15 +142,15 @@ text-align: center;
     font-weight: 700;
     font-size: 1.5rem;
     /* margin: 0; */
-    padding: 0;
-    /* margin: 0.7rem; */
+    /* padding: 0; */
+    margin: 0.7rem auto;
     width: 100%;
 }
 
 
 .project-page-root .new-task.btn {
-    margin: 0.8rem;
-    padding: 0.5rem;
+    /* margin: 0.8rem; */
+    /* padding: 0.5rem; */
     background-color: var(--green-light);
     border: none;
     border-radius: 4px;
@@ -185,24 +200,24 @@ text-align: center;
     /* overflow: auto; */
     /* margin: auto; */
     /* width: fit-content; */
-
+    /* width: 100%; */
 }
 
-.project-page-root .delete.btn {
-    background-color: var(--red-lighter);
-    font-size: 1.6rem;
-    padding: 0.8rem;
-    margin: 1rem;
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    bottom: 0;
-    right: 0.5rem;
-    opacity: 50%;
+.project-page-root .completed summary {
+    width: 90%;
+    margin: 0.5rem auto 0;
+    /* background-color: red; */
 }
 
-.project-page-root .delete.btn:hover {
+.project-page-root .btn:hover {
     opacity: 100%;
+}
+
+.project-page-root .btn.delete {
+    /* background-color: var(--red-lighter); */
+}
+.project-page-root .btn.add {
+    background-color: var(--green-lighter);
 }
 
 .project-page-root .delete.btn[data]:hover::after {
@@ -215,30 +230,48 @@ text-align: center;
 
 .project-page-root .footer {
     position: fixed;
-    bottom: 0;
-    background-color: #fff;
-    width: 100%;
-    height: fit-content;
-    height: 3rem;
+    bottom: 0%;
+    left: 50%;
+    right: 50%;
+    width: fit-content;
+    margin-left: -2rem;
+
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* gap: 2rem; */
+    /* justify-content: center; */
+    /* padding: 0.8rem 0; */
+    /* background-color: rgba(255, 255, 255, 0.836); */
+    /* width: 100%; */
+    /* height: fit-content; */
+    /* height: 3rem; */
 }
 
-@media screen and (max-width: 400px) {
+.project-page-root .footer .btn {
+    font-size: 2rem;
+    margin: 1rem;
+}
 
-    .project-page-root .project-details {
-        width: 85vw;
-        position: initial;
-    }
+.project-page-root .edit.btn {
+    position: absolute;
+    right: -2.5rem;
+    top: 1.5rem;
+}
 
-    /* .project-page-root textarea:enabled {
-        width: 70vw;
-    } */
+.project-card-root .delete.btn {
+    position: absolute;
+    right: 0rem;
+    top: 0;
+    padding: 0.5rem;
+    /* bottom: 0.5rem; */
+    opacity: 40%;
+    font-size: 0.9rem;
+    background-color: none;
+    /* z-index: 3; */
+}
 
-    .project-page-root .project-description .buttons,
-    .project-page-root .project-name .buttons {
-    /* position: static; */
-        right: -2rem;
-        display: flex;
-        flex-direction: column-reverse;
-        gap: 0.8rem;
-    }
+.project-card-root .delete.btn:hover {
+    opacity: 90%;
+    /* transform-origin: top right; */
+    /* transform: scale(112%); */
 }

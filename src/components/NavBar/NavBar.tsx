@@ -33,7 +33,6 @@ export default function NavBar({ }: Props) {
 
     useEffect(() => {
 
-
         if (isProjectPage) {
             setActiveProject(localStorage.getActiveProject());
         } else {
@@ -42,9 +41,6 @@ export default function NavBar({ }: Props) {
         }
 
     }, [location]);
-
-    console.log(activeProject?.name);
-
 
     return (
         <>
@@ -56,14 +52,15 @@ export default function NavBar({ }: Props) {
                 </div>
                 <div className='nav-items'>
                     {!user && <Link to="/login">Login</Link>}
+                    {user && <Link to="/about">About</Link>}
                     {user && <div onClick={logOutUser}>Log Out</div>}
                 </div>
             </div>
             {user && <ul className="breadcrumb">
-                <li><Link to={`/user/${user?.id}`}><FontAwesomeIcon icon={faHouseUser} /> {user?.email}</Link></li>
-                {!isUserPage && <li><Link to={`/workspace/${user?.id}`}>{user?.orgName}</Link></li>}
+                <li><Link to={`/user/${user?.id}`}><FontAwesomeIcon icon={faHouseUser} /> {`${user?.firstName} ${user?.lastName}` || user?.email}</Link></li>
+                {!isUserPage ? <li><Link to={`/workspace/${user?.orgId}`}>{user?.orgName}</Link></li>
+                : <li className='dimmed'><Link to={`/workspace/${user?.orgId}`}>{user?.orgName}</Link></li>}
                 {activeProject && <li><a href="#">{activeProject?.name}</a></li>}
-                {/* <li><a href="#"></a></li> */}
                 {/* <li>Task Name</li> */}
             </ul>}
         </>

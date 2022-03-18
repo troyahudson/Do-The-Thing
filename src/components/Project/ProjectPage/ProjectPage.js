@@ -7,7 +7,7 @@ import { Context } from '../../../App';
 import '../../Project/Project.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckSquare, faEdit, faTrashCan } from '@fortawesome/free-regular-svg-icons';
-import { faBan } from '@fortawesome/free-solid-svg-icons';
+import { faBan, faPlus } from '@fortawesome/free-solid-svg-icons';
 import ConfirmationDialog from '../../Confirmation Dialog/ConfirmationDialog';
 import TaskForm from '../../Task/TaskForm/TaskForm';
 import ProjectBoard from '../ProjectBoard/ProjectBoard';
@@ -19,7 +19,6 @@ export default function ProjectPage() {
   const { projectId } = useParams();
   const navigate = useNavigate();
   const [tasks, setTasks] = useState([]);
-  // const [project, setProject] = useState(null);
   const project = localStorage.getActiveProject();
   const [isEditingDescription, setIsEditingDescription] = useState(false);
   const [isEditingName, setIsEditingName] = useState(false)
@@ -38,16 +37,15 @@ export default function ProjectPage() {
       }
     })
 
-    if (isEmptyTask) {
-      const newTask = new Task({ ...Task, name: '', createdByUserId: user.id, assignedToUserId: user.id, assignedToUserName: user.email, projectId: projectId });
+    const newTask = new Task({ ...Task, name: '', createdByUserId: user.id, assignedToUserId: user.id, assignedToUserName: user.email, projectId: projectId });
 
-      api.addNewTask(newTask)
-        .then(res => {
-          setTasks([...tasks, newTask])
-        }).catch(err => {
-          console.error(err);
-        })
-    }
+    api.addNewTask(newTask)
+      .then(res => {
+        setTasks([...tasks, newTask])
+      }).catch(err => {
+        console.error(err);
+      })
+
   }
 
   function deleteTask(taskId) {
@@ -144,7 +142,6 @@ export default function ProjectPage() {
   useEffect(() => {
     api.getProjectById(projectId)
       .then(res => {
-        // setProject(res.data);
         setNewProject(res.data);
         // localStorage.saveProject(res.data)
         setActiveProject(res.data)
@@ -165,17 +162,18 @@ export default function ProjectPage() {
   }, []);
 
   toDoTasks = tasks.filter(task => task.status != Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - a.dateCreated);
-  completedTasks = tasks.filter(task => task.status == Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - b.dateCreated);
+  completedTasks = tasks.filter(task => task.status == Task.STATUS.COMPLETE).sort((a, b) => b.dateCreated - a.dateCreated);
 
   return (
     <div className='project-page-root'>
       <div className='project-details'>
         <ProjectName />
-        <ProjectDescription />
+        {/* <ProjectDescription /> */}
       </div>
-      <button className='new-task btn' type="button" onClick={addTask}>
+
+      {/* <button className='new-task btn' type="button" onClick={addTask}>
         Create New Task
-      </button>
+      </button> */}
       <div className='list-container'>
         <div className='task-list'>
           {toDoTasks.map((t) => {
@@ -189,7 +187,7 @@ export default function ProjectPage() {
             )
           })}
         </div>
-        <div className='task-list'>
+        <div className='completed'>
           <details open>
             <summary>
               Completed tasks
@@ -211,15 +209,17 @@ export default function ProjectPage() {
         </div>
       </div>
       <div className='footer'>
-        <FontAwesomeIcon className='delete btn' icon={faTrashCan} onClick={toggleModal} data="Delete Project" />
+        <FontAwesomeIcon className='add btn' icon={faPlus} onClick={addTask} />
       </div>
-
-      {/* <ProjectBoard
+      <br/>
+      <hr />
+      <h2>Kanban Board View (preview only)</h2>
+      <ProjectBoard
         tasks={tasks}
         project={project}
         setTasks={setTasks}
         deleteTask={deleteTask}
-      /> */}
+      />
 
       {isModalOpen &&
         <ConfirmationDialog
@@ -246,23 +246,21 @@ export default function ProjectPage() {
               value={newProject.name}
               onChange={handleChange}
               autoFocus
-              size={newProject.name.length}
+            // size={newProject.name.length}
             // maxLength={255}
             />
           </form>
-          <span className='buttons'>
-            <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
+          <div className='buttons'>
             <FontAwesomeIcon className='confirm btn' icon={faCheckSquare} onClick={updateProject} />
-          </span>
+            <FontAwesomeIcon className='cancel btn' icon={faBan} onClick={cancelEdit} />
+          </div>
         </div>
       )
     } else {
       return (
         <div className='project-name'>
           <h2>{newProject?.name}</h2>
-          <span className='buttons'>
-            <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editName} />
-          </span>
+          <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editName} />
         </div>
       )
     }
@@ -335,9 +333,9 @@ export default function ProjectPage() {
     else {
       return (
         <div className='project-description'>
-          <div>Add project description here</div>
+          <div><br /></div>
           <span className='buttons'>
-            <FontAwesomeIcon className='edit btn' icon={faEdit} onClick={editDescription} />
+            <FontAwesomeIcon className='edit btn empty' icon={faEdit} onClick={editDescription} />
           </span>
         </div >
       )

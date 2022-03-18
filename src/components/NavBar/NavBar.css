@@ -2,21 +2,14 @@
     background-color: var(--green);
     padding: 0;
     position: sticky;
-    /* position: absolute; */
     top: 0;
-    /* left: 0;
-    right: 0; */
+    left: 0;
+    right: 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items:center;
-    /* position: relative; */
-    /* width: 100vw; */
-
-    /* border: solid blue 1px; */
-}
-
-.nav-bar-root > * {
+    z-index: 2;
 }
 
 .nav-bar-root .logo {
@@ -30,10 +23,6 @@
 
 .nav-bar-root .logo:hover {
     background-color: var(--green-light);
-
-    /* filter: brightness(95%); */
-    /* filter: invert(20%) sepia(100%) saturate(100%) hue-rotate(85deg); */
-    /* transform: scale(101%); */
 }
 
 .nav-bar-root a{
@@ -70,16 +59,30 @@
 
 /* Style the list */
 ul.breadcrumb {
-    padding: 0.3rem 16px;
+    position: sticky;
+    left: 0;
+    right: 0;
+    top: 3.2rem;
+    padding: 0.3rem 2rem;
     list-style: none;
-    background-color: #eee;
+    background: linear-gradient(to bottom, hsla(138, 81%, 81%), #eee) ;
     margin: 0;
+    /* margin-top: 3.2rem; */
+    text-align: left;
   }
   
   /* Display list items side by side */
   ul.breadcrumb li {
     display: inline;
-    font-size: 1.1rem;
+    font-size: clamp();
+  }
+
+  ul.breadcrumb .dimmed  {
+    opacity: 40%;
+  }
+
+  ul.breadcrumb .dimmed:hover  {
+    opacity: 80%;
   }
   
   /* Add a slash symbol (/) before/behind each list item */

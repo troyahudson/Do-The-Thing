@@ -2,6 +2,19 @@
     background-color: hsl(208, 100%, 90%);
     border-radius: 5px;
     padding: 0.6rem;
+
+    display: grid;
+    /* grid-template-columns: 0.1fr minmax(60vw, 8fr) 1fr; */
+    grid-template-columns: 0.1fr minmax(30%, 14fr) 1fr;
+    align-items: center;
+    justify-items: flex-start;
+
+    /* width: 100%; */
+
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: space-between; */
 }
 
 .task-card-root .top-section{
@@ -11,16 +24,34 @@
     align-items:center;
 }
 
+.task-card-root .task-name {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: start; */
+    align-items: start;
+    flex-wrap: wrap;
+}
+
+.task-card-root .task-name > *:nth-child(2) {
+    font-size: 0.8rem;
+    text-align: left;
+}
+
 .task-card-root .task-name.checked {
     text-decoration: line-through;
 }
 
+.task-card-root .checkbox {
+    cursor: pointer;
+
+}
+
 .task-card-root .task-info {
-    display: flex;
+    /* display: flex;
     flex-direction: row;
     gap: 0.8rem;
     align-items: center;
-    justify-content: space-between;
+    justify-self: flex-end; */
 }
 
 .task-card-root .task-info .icon {
@@ -36,12 +67,8 @@
     display: flex;
     flex-direction: row;
     gap: 1rem;
-    
-    visibility: hidden;
-    opacity: 0.1;
-
-    visibility: visible;
-    opacity: 1;
+    /* visibility: visible;
+    opacity: 1; */
 }
 
 .task-card-root .task-info .options.visible {
@@ -82,22 +109,23 @@
     color: #efef
 }
 
-.task-card-root .task-name.task-info {
-    /* border: solid blue 1px; */
-    /* max-width: 255ch; */
-    /* display: flex; */
-    flex-grow: 1;
-
-}
+/* .task-card-root .task-name.task-info {
+    flex-grow: 2;
+} */
 
 .task-card-root .task-name input {
     margin: 0;
-    font-size: inherit;
-    font-family: inherit;
+    /* font-size: inherit; */
+    /* font-family: inherit; */
+    /* flex-grow: 2; */
     background-color: transparent;
     border: 0;
-    flex-grow: 2;
+    padding-left: 1rem;
+    /* margin-left: 1rem; */
+}
 
+.task-card-root .task-name {
+    padding: 0 1rem;
 }
 
 .task-card-root.editing,
@@ -124,8 +152,8 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    width: 90vw;
-    max-width: 650px;
+    width: 90%;
+    max-width: 700px;
     margin: auto;
     margin-top: 1rem;
 }

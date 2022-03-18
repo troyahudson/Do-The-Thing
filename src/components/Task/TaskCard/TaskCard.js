@@ -40,7 +40,6 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
             task.status = Task.STATUS.COMPLETE;
             /* Convert  dateCompleted */
             task.dateCompleted = new Date().toISOString().slice(0, 19).replace('T', ' ');
-            console.log(task.dateCompleted);
         }
 
         setTasks(tasks.map(t => {
@@ -53,12 +52,11 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
         api.updateTask(task)
             .then(res => {
                 setIsChecked(!isChecked);
-                nameRef.current?.classList.toggle('checked');
-                boxRef.current?.classList.toggle('checked');
-                editRef.current?.classList.toggle('checked');
-                deleteRef.current?.classList.toggle('checked');
-                statusRef.current?.classList.toggle('checked');
-
+                // nameRef.current?.classList.toggle('checked');
+                // boxRef.current?.classList.toggle('checked');
+                // editRef.current?.classList.toggle('checked');
+                // deleteRef.current?.classList.toggle('checked');
+                // statusRef.current?.classList.toggle('checked');
             }).catch(err => {
                 console.error(err)
             })
@@ -66,6 +64,10 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
 
     function editTask() {
         setIsModalOpen(!isModalOpen);
+    }
+
+    function handleCancel() {
+        setIsModalOpen(false);
     }
 
     function handleChange(e) {
@@ -104,14 +106,21 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
     }
 
     function handleSubmit() {
-        // console.log(newTask);
-        // api.updateTask(newTask)
+
+        // setTasks(tasks.map(t => {
+        //     if (t.id == task.id) {
+        //         return { ...t, name: task.name, description: task.description }
+        //     } else {
+        //         return t;
+        //     }
+        // }))
         api.updateTask({ id: task.id, name: editingValue })
             .then(res => {
             })
             .catch(err => {
                 console.error(err);
             })
+            // console.log(tasks);
     }
 
     function handleDelete() {
@@ -139,7 +148,13 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
     }
 
     useEffect(() => {
-        setNewTask(task)
+        setNewTask(task);
+
+        if (task.name == "") {
+            setIsModalOpen(true);
+        } else {
+            setIsModalOpen(false);
+        }
 
         if (task.status == Task.STATUS.COMPLETE) {
             setIsChecked(true);
@@ -149,63 +164,55 @@ export default function TaskCard({ task, tasks, setTasks, project, deleteTask })
             deleteRef.current?.classList.toggle('checked');
             statusRef.current?.classList.toggle('checked');
         }
-        if (task.name == '') {
-            document.getElementById("name").disabled = false;
-        }
-    }, [task])
+
+    }, [])
 
 
     return (
-        <div
-            className='task-card-root'
-            onMouseEnter={showOptions}
-            onMouseLeave={hideOptions}
-
-        >
-            <div className='top-section'>
-                <div ref={nameRef} className='task-info task-name'>
-                    <div ref={boxRef} className='icon checkbox' onClick={markTaskComplete}>
-                        {isChecked ? <FontAwesomeIcon icon={faCheckSquare} />
-                            : <FontAwesomeIcon icon={faSquare} />}
-                    </div>
-                    <input type="text"
-                        ref={inputRef}
-                        autoFocus
-                        disabled={true}
-                        className='textInput'
-                        name="name"
-                        id="name"
-                        value={newTask.name}
-                        placeholder="New task..."
-                        onChange={handleChange}
-                        onKeyDown={handleKeyDown}
-                        onBlur={handleBlur}
-
-                    // onInput={handleInput}
-                    />
+        <div className='task-card-root' onMouseEnter={showOptions} onMouseLeave={hideOptions}>
+            {/* <div className='top-section'> */}
+            <div ref={boxRef} className='icon checkbox' onClick={markTaskComplete}>
+                {isChecked ? <FontAwesomeIcon icon={faCheckSquare} />
+                    : <FontAwesomeIcon icon={faSquare} />}
+            </div>
+            <div ref={nameRef} className='task-name'>
+                {/* <input type="text"
+                    ref={inputRef}
+                    autoFocus
+                    disabled={true}
+                    className='textInput'
+                    name="name"
+                    id="name"
+                    value={newTask.name}
+                    placeholder="New task..."
+                    onChange={handleChange}
+                    onKeyDown={handleKeyDown}
+                    onBlur={handleBlur} 
+                    /> */}
+                <div>{newTask.name}</div>
+            <div>{newTask.description}</div>
+            </div>
+            <div className='task-info'>
+                <div className='options' ref={optionsRef}>
+                    <span className='icon edit' ref={editRef}
+                        onClick={editTask}>
+                        <FontAwesomeIcon icon={faPencil} />
+                    </span>
+                    <span className='icon delete' ref={deleteRef}
+                        onClick={() => { setIsConfirmOpen(true) }}>
+                        <FontAwesomeIcon icon={faTrash} />
+                    </span>
                 </div>
-                <div className='task-info'>
-                    <div className='options' ref={optionsRef}>
-                        <span className='icon edit' ref={editRef}
-                            onClick={editTask}>
-                            <FontAwesomeIcon icon={faPencil} />
-                        </span>
-                        <span className='icon delete' ref={deleteRef}
-                            onClick={() => { setIsConfirmOpen(true) }}>
-                            <FontAwesomeIcon icon={faTrash} />
-                        </span>
-                    </div>
-                    <div className='task-status' ref={statusRef}>{task.status}</div>
-                </div>
+                {/* <div className='task-status' ref={statusRef}>{task.status}</div> */}
             </div>
 
-            <div className='task-description'>
-                {task?.description}
-            </div>
             {isModalOpen && <TaskForm
                 task={newTask}
+                tasks={tasks}
+                setTasks={setTasks}
                 onSave={handleSubmit}
                 onCancel={editTask}
+                onDelete={handleDelete}
             />}
             {isConfirmOpen &&
                 <ConfirmationDialog

@@ -30,7 +30,7 @@
   .column__item {
       list-style: none;
     border-radius: 0.4rem;
-    background-color: #dfe3e6;
+    background-color: hsl(137, 45%, 90%);
     padding: .5rem;
   }
   

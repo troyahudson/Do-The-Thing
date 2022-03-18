@@ -39,6 +39,7 @@ export default function NewProjectForm({ saveButton, cancelButton, project }) {
                         name="name"
                         value={newProject?.name}
                         onChange={handleChange}
+                        autoFocus
                     />
                     <label htmlFor='projectDescription'>Project Description (optional):</label>
                     <textarea

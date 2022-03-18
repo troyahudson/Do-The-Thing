@@ -52,9 +52,9 @@ export default function LoginPage({ }: Props) {
                         setActiveUser(loggedInUser);
                         api.getOrgsByAdminUserId(loggedInUser.id)
                             .then((res: any) => {
-                                localStorage.saveUser({ ...loggedInUser, orgId: res.data.id, orgName: res.data.name })
-                                setActiveUser({ ...loggedInUser, orgId: res.data.id, orgName: res.data.name });
-                                navigate(`/user/${loggedInUser.id}`)
+                                localStorage.saveUser({ ...loggedInUser, orgId: res.data[0].id, orgName: res.data[0].name })
+                                setActiveUser({ ...loggedInUser, orgId: res.data[0].id, orgName: res.data[0].name });
+                                navigate(`/workspace/${loggedInUser.id}`)
                             })
                             .catch((err: any) => {
                                 console.error(err);

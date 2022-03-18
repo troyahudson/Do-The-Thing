@@ -20,10 +20,10 @@ export default function WorkspacePage() {
 
     const user = localStorage.getActiveUser();
     const project = localStorage.getActiveProject();
-    const { userId } = useParams();
+    const { orgId } = useParams();
 
     function getProjects() {
-        api.getProjectsByCreatorUserId(userId)
+        api.getProjectsByCreatorUserId(user.id)
             .then((res) => {
                 setProjects(res.data)
             })
@@ -74,7 +74,9 @@ export default function WorkspacePage() {
                     return (
                         <div key={p.id}>
                             <ProjectCard key={p.id}
-                                project={p} />
+                                project={p}
+                                projects={projects}
+                                setProjects={setProjects} />
                         </div>
                     )
                 })}

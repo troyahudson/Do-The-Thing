@@ -3,9 +3,9 @@ import { Context } from '../../../App';
 import { Project } from '../../../models/task.model';
 import './TaskForm.css'
 
-export default function TaskForm({task, onSave, onCancel}) {
+export default function TaskForm({ task, tasks, setTasks, onSave, onCancel, onDelete }) {
 
-    const {localStorage, api} = useContext(Context);
+    const { localStorage, api } = useContext(Context);
 
     const user = localStorage.getActiveUser();
 
@@ -21,24 +21,50 @@ export default function TaskForm({task, onSave, onCancel}) {
         // console.log(task);
     }
 
-    
-  function onEnterPress(e) {
-      if (e.keyCode == 13 && e.shiftKey == false) {
-        e.preventDefault();
-      handleSubmit()
-    }
-  }
 
-    function handleSubmit(){
+    function onEnterPress(e) {
+        if (e.keyCode == 13 && e.shiftKey == false) {
+            e.preventDefault();
+            handleSubmit()
+        }
+    }
+
+    function onEscapePress(e) {
+        if (e.keyCode == 27) {
+            handleCancel();
+        }
+    }
+
+    function handleSubmit(e) {
         // e.preventDefault();
+
+        setTasks(tasks.map(t => {
+            if (t.id == task.id) {
+                console.log(t.name);
+                return { ...t, name: task.name, description: task.description }
+            } else {
+                return t;
+            }
+        }))
         api.updateTask(newTask)
-        .then(res => {
-            console.log("Successfuly updated task");
+            .then(res => {
+                console.log("Successfuly updated task");
+                
+                // onSave();
+                onCancel();
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    }
+
+
+    function handleCancel() {
+        if (task.name == "") {
+            onDelete();
+        } else {
             onCancel();
-        })
-        .catch(err => {
-            console.error(err);
-        })
+        }
     }
 
     return (
@@ -52,17 +78,20 @@ export default function TaskForm({task, onSave, onCancel}) {
                         name="name"
                         value={newTask?.name}
                         onChange={handleChange}
-                        // onKeyDown={onEnterPress}
+                        onKeyDown={onEscapePress}
+                        autoFocus
                     />
-                    <label htmlFor='taskDescription'>Task Description (optional):</label>
-                    <textarea
-                        id="taskDescription"
-                        type="text"
-                        name="description"
-                        value={newTask.description || ""}
-                        onChange={handleChange}
-                        onKeyDown={onEnterPress}
-                    />
+                    <details open>
+                        <summary htmlFor='taskDescription'>Task Description (optional):</summary>
+                        <textarea
+                            id="taskDescription"
+                            type="text"
+                            name="description"
+                            value={newTask.description || ""}
+                            onChange={handleChange}
+                            onKeyDown={onEnterPress}
+                        />
+                    </details>
                     <button className='saveButton' type="button" onClick={handleSubmit}>Save Changes</button>
                     <button className='cancelButton' type="button" onClick={onCancel}>Cancel</button>
                 </form>

@@ -5,6 +5,12 @@ import { User } from "../models/user.model";
 const axios = require("axios");
 const URL = `https://do-the-thing-343117.ue.r.appspot.com/api`;
 
+function changePassword(user: any, password: string, newPassword: string) {
+  return axios.put(
+    `${URL}/users/newPassword/${user.id}`, { user, password, newPassword, token: user.token }
+  );
+}
+
 const api = {
 
   /* User */
@@ -17,6 +23,7 @@ const api = {
   updateUser: (user: User) => {
     return axios.put(`${URL}/users/${user.id}`, user);
   },
+  changePassword,
   getUserById: (userId: string) => {
     return axios.get(`${URL}/users/${userId}`);
   },

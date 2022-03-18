@@ -46,11 +46,11 @@ export default function SignUpPage({ }: Props) {
 
                                         const newTask1 = new Task({ ...Task, name: "This is your first task", description: "From the project page, you can add, edit, and delete tasks.", createdByUserId: user.id, assignedToUserId: user.id, projectId: newProject.id })
                                         // console.log(newTask1);
-                                        
+
 
                                         api.addNewTask(newTask1)
                                             .then((res: any) => {
-                                                navigate(`/user/${user.id}`);
+                                                navigate(`/workspace/${user.id}`);
                                             })
                                             .catch((err: any) => {
                                                 console.error(err);
@@ -121,27 +121,27 @@ export default function SignUpPage({ }: Props) {
     }
 
     return (
-            <div className='signup-root'>
-                <h2>Sign Up</h2>
-                <form className='signup-form' onSubmit={handleSubmit}>
-                    <label htmlFor='email'>Email: </label>
-                    <input type="text"
-                        name='email'
-                        value={user.email}
-                        onChange={handleChange}></input>
-                    <label htmlFor='password'>Password: </label>
-                    <input type="password"
-                        name='password'
-                        value={user.password}
-                        onChange={handleChange}></input>
-                    <button className='action-btn' type="submit" onClick={handleSubmit}>Register</button>
-                    <hr />
-                    <div>Already have an account?</div>
-                    <button className='link-btn' type="button"
-                        onClick={() => { navigate("/login") }}>
-                        Login
-                    </button>
-                </form>
-            </div>
+        <div className='signup-root'>
+            <h2>Sign Up</h2>
+            <form className='signup-form' onSubmit={handleSubmit}>
+                <label htmlFor='email'>Email: </label>
+                <input type="text"
+                    name='email'
+                    value={user.email}
+                    onChange={handleChange}></input>
+                <label htmlFor='password'>Password: </label>
+                <input type="password"
+                    name='password'
+                    value={user.password}
+                    onChange={handleChange}></input>
+                <button className='action-btn' type="submit" onClick={handleSubmit}>Register</button>
+                <hr />
+                <div>Already have an account?</div>
+                <button className='link-btn' type="button"
+                    onClick={() => { navigate("/login") }}>
+                    Login
+                </button>
+            </form>
+        </div>
     );
 }

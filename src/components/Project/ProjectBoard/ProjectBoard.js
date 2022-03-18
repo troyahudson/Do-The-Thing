@@ -1,4 +1,4 @@
-import { faPencil, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { faPencil, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useState } from 'react'
 import { Task } from '../../../models/task.model'
@@ -35,8 +35,7 @@ export default function ProjectBoard({ tasks, project, setTasks, deleteTask }) {
                         })}
                     </ul>
                     <div className="column__item--cta">
-                        <i className="fas fa-plus"></i>
-                        <h4>Add another card</h4>
+                    <h4><FontAwesomeIcon icon={faPlus} /> Add another task</h4>
                     </div>
                 </li>
                 <li className="column__item">
@@ -53,8 +52,7 @@ export default function ProjectBoard({ tasks, project, setTasks, deleteTask }) {
                         })}
                     </ul>
                     <div className="column__item--cta">
-                        <i className="fas fa-plus"></i>
-                        <h4>Add another card</h4>
+                    <h4><FontAwesomeIcon icon={faPlus} /> Add another task</h4>
                     </div>
                 </li>
                 <li className="column__item">
@@ -72,8 +70,7 @@ export default function ProjectBoard({ tasks, project, setTasks, deleteTask }) {
                         </ul>
                     </ul>
                     <div className="column__item--cta">
-                        <i className="fas fa-plus"></i>
-                        <h4>Add another card</h4>
+                        <h4><FontAwesomeIcon icon={faPlus} /> Add another task</h4>
                     </div>
                 </li>
             </ul>

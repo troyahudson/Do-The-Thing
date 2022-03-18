@@ -12,6 +12,7 @@ import SignUpPage from './components/SignUpPage/SignUpPage';
 import { Project } from './models/project.model';
 import ProjectBoard from './components/Project/ProjectBoard/ProjectBoard';
 import UserPage from './components/User/UserPage';
+import AboutPage from './components/AboutPage/AboutPage';
 
 
 type Props = {};
@@ -46,10 +47,11 @@ function App({ }: Props) {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<HomePage />}>
+              <Route path="/about" element={<AboutPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
               <Route path="/user/:userId" element={<UserPage />} />
-              <Route path="/workspace/:userId" element={<WorkspacePage />} />
+              <Route path="/workspace/:orgId" element={<WorkspacePage />} />
               <Route path="/project/:projectId" element={<ProjectPage />} />
               {/* <Route path="/project/:projectId/board" element={<ProjectBoard />} /> */}
             </Route>
@@ -57,7 +59,6 @@ function App({ }: Props) {
           </Routes>
         </BrowserRouter>
       </Context.Provider>
-
     </div>
   );
 }
